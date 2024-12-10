@@ -33,3 +33,17 @@ CHECK_ROOT
 
 dnf module disable nodejs -y
 VALIDATE $? "Disabling nodejs"
+
+dnf module enable nodejs:20 -y
+VALIDATE $? "Enabling nodejs"
+
+dnf list installed |grep -i nodejs
+
+if [ $? -ne 0 ]
+then
+    echo "NodeJS is not installed, installing nodeJS"
+    dnf install nodejs -y
+    VALIDATE $? "Installing nodejs:20"
+else
+    echo -e "NodeJS is already installed $Y SKIPPING $N"
+fi
