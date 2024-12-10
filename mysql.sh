@@ -10,7 +10,7 @@ Y="\e[33m"
 CHECK_ROOT() {
     if [ $USER_ID -ne 0 ]
     then    
-        echo -e "$Y Please run the script with root user$N"
+        echo -e "$Y Please run the script with $R root user$N"
         exit 1
     fi
 }
