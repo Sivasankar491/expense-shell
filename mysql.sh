@@ -10,20 +10,27 @@ Y="\e[33m"
 CHECK_ROOT() {
     if [ $USER_ID -ne 0 ]
     then    
-        echo -e "$Y Please run the script with $R root user$N"
+        echo -e "$R Please run the script with root user$N"
         exit 1
     fi
 }
 
 VALIDATE() {
-    if [ $? -ne 0 ]
+    if [ $1 -ne 0 ]
     then
-        echo "MySQL isn't installed"
+        echo -e "$2 installation is $R FAILED $N"
         exit 1
+    else
+        echo -e "$2 installation is $G SUCCESS $N"
     fi
 }
 
 CHECK_ROOT
+
+dnf install mysql-server -y
+VALIDATE $? MySQL
+
+
 
 
 
