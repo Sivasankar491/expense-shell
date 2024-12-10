@@ -12,6 +12,7 @@ CHECK_ROOT() {
     then    
         echo -e "$YPlease run the script with root user$N"
         exit 1
+    fi
 }
 
 VALIDATE() {
@@ -19,7 +20,7 @@ VALIDATE() {
     then
         echo "MySQL isn't installed"
         exit 1
-fi
+    fi
 }
 
 CHECK_ROOT
