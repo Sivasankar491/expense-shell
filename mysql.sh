@@ -33,11 +33,15 @@ VALIDATE() {
 
 CHECK_ROOT
 
-dnf list installed|grep -i mysql &>> $LOG_FILE
-VALIDATE $? "MySQL already installed"
+dnf list installed|grep -i mysql &>> $LOG_FILE 
 
-dnf install mysql-server -y &>> $LOG_FILE
-VALIDATE $? "MySQL installation"
+if [ $? -ne 0 ]
+then
+    dnf install mysql-server -y &>> $LOG_FILE
+    VALIDATE $? "MySQL installation"
+else
+    echo -e "MySQL is already installed $Y SKIPPING $N"
+fi
 
 systemctl enable mysqld &>> $LOG_FILE
 VALIDATE $? "Enable MYSQL"
