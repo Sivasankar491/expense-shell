@@ -43,7 +43,7 @@ dnf list installed |grep -i nodejs &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
     echo "NodeJS is not installed, installing nodeJS" | tee -a $LOG_FILE
-    dnf install nodejs -y
+    dnf install nodejs -y &>> $LOG_FILE
     VALIDATE $? "Installing nodejs:20"
 else
     echo -e "NodeJS is already installed $Y SKIPPING $N" | tee -a $LOG_FILE
